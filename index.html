@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Baldur's Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Crimson Pro', serif;
+      background-color: #1c1c1e;
+      color: #f5f5f5;
+    }
+
+    header {
+      background: url('https://www.nme.com/wp-content/uploads/2023/08/baldurs-gate-3-review-header.jpg') no-repeat center center/cover;
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 0 0 10px #000;
+    }
+
+    header h1 {
+      font-size: 4rem;
+      margin: 0;
+    }
+
+    nav {
+      background-color: #2c2c2e;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav a {
+      color: #f5f5f5;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .blog-posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: #2c2c2e;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #111;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      margin-top: 0.5rem;
+    }
+
+    .card p {
+      color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Baldur's Blog</h1>
+    <p>My journey through Baldur’s Gate 3</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Characters</a>
+    <a href="#">Journal</a>
+    <a href="#">Gallery</a>
+  </nav>
+
+  <div class="container">
+    <section class="blog-posts">
+      <div class="card">
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/ss_3e1f6d8b44b8b1e1c478f3c01e5e1fa3e82b320d.1920x1080.jpg" alt="Post 1">
+        <h3>Episode 1: The Nautiloid Crash</h3>
+        <p>I awaken in a nightmare… a mind flayer ship crashes into Faerûn. My journey begins in chaos and fire.</p>
+      </div>
+      <div class="card">
+        <img src="https://static1.thegamerimages.com/wordpress/wp-content/uploads/2023/08/baldurs-gate-3-character-creation.jpg" alt="Post 2">
+        <h3>Character Creation: Meet My Drow Cleric</h3>
+        <p>A Lolth-sworn cleric with secrets to hide. I explain my choices and early game strategy.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © 2025 Baldur's Blog | Crafted by adventurer’s hands
+  </footer>
+
+</body>
+</html>
