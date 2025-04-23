@@ -80,7 +80,6 @@
       color: #888;
     }
 
-    /* Admin Form Style */
     #adminForm {
       display: none;
       position: fixed;
@@ -91,6 +90,7 @@
       border-radius: 10px;
       box-shadow: 0 0 10px #000;
       max-width: 300px;
+      z-index: 1001;
     }
 
     #adminBtn {
@@ -107,10 +107,8 @@
       z-index: 1000;
     }
 
-    /* Textarea Styling */
-    textarea {
+    .blog-input, textarea {
       width: 100%;
-      height: 200px;
       margin-bottom: 0.5rem;
       padding: 0.5rem;
       font-size: 1rem;
@@ -119,16 +117,31 @@
       color: #fff;
       border: 1px solid #444;
       box-sizing: border-box;
-      resize: vertical; /* Allows resizing only vertically */
-      overflow: auto; /* Makes sure scrolling happens only when necessary */
-      font-family: 'Crimson Pro', serif; /* Matching font for consistency */
-      line-height: 1.6;
+      font-family: 'Crimson Pro', serif;
     }
 
-    /* Fix text overflow issues */
-    textarea:focus {
+    textarea {
+      height: 200px;
+      resize: vertical;
+      line-height: 1.6;
+      overflow: auto;
+    }
+
+    .blog-input:focus, textarea:focus {
       outline: none;
       border: 1px solid #888;
+    }
+
+    .blog-button {
+      width: 100%;
+      background: #444;
+      color: #fff;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
     }
   </style>
 </head>
@@ -166,22 +179,19 @@
   </footer>
 
   <!-- Admin Button -->
-  <button id="adminBtn" title="Admin Access">
-    ⚙️
-  </button>
+  <button id="adminBtn" title="Admin Access">⚙️</button>
 
   <!-- Admin Form -->
   <div id="adminForm">
-    <h3 style="margin-top: 0;">New Post</h3>
-    <input type="text" id="postTitle" placeholder="Post Title" style="width: 100%; margin-bottom: 0.5rem;" />
-    <input type="text" id="postSummary" placeholder="Summary" style="width: 100%; margin-bottom: 0.5rem;" />
-    <input type="text" id="imageURL" placeholder="Image URL" style="width: 100%; margin-bottom: 0.5rem;" />
-    <input type="text" id="fileName" placeholder="Filename (e.g., blog3.html)" style="width: 100%; margin-bottom: 0.5rem;" />
-    
-    <!-- New Textarea for Full Post Content -->
+    <h3 style="margin-top: 0;">New Blog Entry</h3>
+    <input type="date" id="postDate" class="blog-input" />
+    <input type="text" id="postTitle" placeholder="Post Title" class="blog-input" />
+    <input type="text" id="postSummary" placeholder="Summary" class="blog-input" />
+    <input type="text" id="imageURL" placeholder="Image URL" class="blog-input" />
+    <input type="text" id="fileName" placeholder="Filename (e.g., blog3.html)" class="blog-input" />
     <textarea id="fullContent" placeholder="Write your full blog content here..."></textarea>
-
-    <button onclick="generatePost()" style="width: 100%; background: #444; color: #fff; padding: 0.5rem;">Generate</button>
+    <button onclick="generatePost()" class="blog-button">Generate</button>
+    <button onclick="closeForm()" class="blog-button" style="background-color: #222;">Close</button>
   </div>
 
   <script>
@@ -193,20 +203,25 @@
 
     document.getElementById('adminBtn').addEventListener('click', function () {
       const pass = prompt('Enter the secret password:');
-      if (pass === 'bg3master') { // Change this password
+      if (pass === 'bg3master') {
         document.getElementById('adminForm').style.display = 'block';
       } else {
         alert('Incorrect password.');
       }
     });
 
+    function closeForm() {
+      document.getElementById('adminForm').style.display = 'none';
+    }
+
     function generatePost() {
       const title = document.getElementById('postTitle').value;
       const summary = document.getElementById('postSummary').value;
       const image = document.getElementById('imageURL').value;
-      const fullContent = document.getElementById('fullContent').value; // Get full content from textarea
+      const fullContent = document.getElementById('fullContent').value;
       const filename = document.getElementById('fileName').value || 'blog-new.html';
-      const date = new Date().toDateString();
+      const dateInput = document.getElementById('postDate').value;
+      const date = dateInput ? new Date(dateInput).toDateString() : new Date().toDateString();
 
       const htmlContent = `
 <!DOCTYPE html>
@@ -233,7 +248,7 @@
   <div class="container">
     <div class="date">Posted ${date}</div>
     <p>${summary}</p>
-    <p>${fullContent}</p> <!-- Full content added here -->
+    <p>${fullContent.replace(/\n/g, '</p><p>')}</p>
     <a href="index.html" class="back-link">← Back to Camp</a>
   </div>
 </body>
@@ -244,6 +259,8 @@
       a.href = URL.createObjectURL(blob);
       a.download = filename;
       a.click();
+
+      closeForm(); // hide after generating
     }
   </script>
 </body>
