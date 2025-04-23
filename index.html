@@ -106,6 +106,18 @@
       display: none;
       z-index: 1000;
     }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      background-color: #2c2c2e;
+      color: #fff;
+      border: 1px solid #444;
+    }
   </style>
 </head>
 
@@ -153,6 +165,10 @@
     <input type="text" id="postSummary" placeholder="Summary" style="width: 100%; margin-bottom: 0.5rem;" />
     <input type="text" id="imageURL" placeholder="Image URL" style="width: 100%; margin-bottom: 0.5rem;" />
     <input type="text" id="fileName" placeholder="Filename (e.g., blog3.html)" style="width: 100%; margin-bottom: 0.5rem;" />
+    
+    <!-- New Textarea for Full Post Content -->
+    <textarea id="fullContent" placeholder="Write your full blog content here..."></textarea>
+
     <button onclick="generatePost()" style="width: 100%; background: #444; color: #fff; padding: 0.5rem;">Generate</button>
   </div>
 
@@ -176,6 +192,7 @@
       const title = document.getElementById('postTitle').value;
       const summary = document.getElementById('postSummary').value;
       const image = document.getElementById('imageURL').value;
+      const fullContent = document.getElementById('fullContent').value; // Get full content from textarea
       const filename = document.getElementById('fileName').value || 'blog-new.html';
       const date = new Date().toDateString();
 
@@ -204,7 +221,7 @@
   <div class="container">
     <div class="date">Posted ${date}</div>
     <p>${summary}</p>
-    <p>Write your full blog content here...</p>
+    <p>${fullContent}</p> <!-- Full content added here -->
     <a href="index.html" class="back-link">← Back to Camp</a>
   </div>
 </body>
