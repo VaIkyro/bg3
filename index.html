@@ -114,5 +114,20 @@
     © 2025 Baldur's Blog | Crafted by adventurer’s hands
   </footer>
 
+  <!-- Hidden Admin Button -->
+  <button id="adminBtn" style="position: fixed; bottom: 20px; right: 20px; background: #333; border: none; color: #fff; padding: 10px; border-radius: 50%; cursor: pointer; display: none;" title="Admin Access">
+    ⚙️
+  </button>
+  
+  <!-- Admin Form (Initially Hidden) -->
+  <div id="adminForm" style="display: none; position: fixed; bottom: 80px; right: 20px; background: #1c1c1e; padding: 1rem; border-radius: 10px; box-shadow: 0 0 10px #000; max-width: 300px;">
+    <h3 style="margin-top: 0;">New Post</h3>
+    <input type="text" id="postTitle" placeholder="Post Title" style="width: 100%; margin-bottom: 0.5rem;" />
+    <input type="text" id="postSummary" placeholder="Summary" style="width: 100%; margin-bottom: 0.5rem;" />
+    <input type="text" id="imageURL" placeholder="Image URL" style="width: 100%; margin-bottom: 0.5rem;" />
+    <input type="text" id="fileName" placeholder="Filename (e.g., blog3.html)" style="width: 100%; margin-bottom: 0.5rem;" />
+    <button onclick="generatePost()" style="width: 100%; background: #444; color: #fff; padding: 0.5rem;">Generate</button>
+  </div>
+
 </body>
 </html>
